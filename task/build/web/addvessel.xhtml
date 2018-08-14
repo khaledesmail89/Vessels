@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Adding a Vessel Form</title>
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+    </h:head>
+    <h:body>
+        <center>
+        <h:form id="vesselData">
+            <h3>Adding Vessel Form</h3>
+    <p:growl id="growl" sticky="true" />  
+            <h:panelGrid columns="2">
+                <h:outputLabel for="vname">Vessel Name:</h:outputLabel>
+                <h:inputText value="#{mbVessel.vessel.vesselName}" id="vname" required="true" requiredMessage="Vessel Name is Required"></h:inputText>
+
+                <h:outputLabel for="imo">Imo Number</h:outputLabel>
+                <h:inputText id="imo" value="#{mbVessel.vessel.vesselImoNumber}" required="true" requiredMessage="Vessel IMO Number is Required"></h:inputText>
+
+                <h:outputLabel>Vessel Type:</h:outputLabel>
+                <h:selectOneMenu  id="vtype" value = "#{mbVessel.vessel.vesselType}" required="true"> 
+                    <f:selectItem itemValue = "tug" itemLabel = "Tug" /> 
+                    <f:selectItem itemValue = "speed boat" itemLabel = "Speed boat" />
+                    <f:selectItem itemValue = "mooring boat" itemLabel = "Mooring boat" /> 
+                </h:selectOneMenu> 
+
+                <h:outputLabel>Has Thrusters:</h:outputLabel>
+                <h:selectOneMenu id="hasthrusters" value = "#{mbVessel.vessel.hasThrusters}" required="true"> 
+                    <f:selectItem itemValue = "Yes" itemLabel = "Yes" /> 
+                    <f:selectItem itemValue = "No" itemLabel = "No" /> 
+                </h:selectOneMenu> 
+
+
+                <h:commandButton actionListener="#{mbVessel.createVessel()}"
+                                 value="Submit" class="btn btn-primary"></h:commandButton>
+
+                                             <h:commandButton  immediate="true" actionListener="#{mbVessel.redirect()}" value="display All Vessels" class="btn btn-primary"></h:commandButton>
+
+            </h:panelGrid>
+
+        </h:form>
+            </center>
+    </h:body>
+</html>
